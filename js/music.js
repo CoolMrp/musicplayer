@@ -513,6 +513,7 @@ window.onload = function(){
 		    },
 		    error: function(XmlHttpRequest, textStatus, errorThrown) {
 		        alert("操作失败!");
+		        oLoad.style.display = "none";
 		    },
 		    success: function(result) {
 		    	oLoad.style.display = "none";
