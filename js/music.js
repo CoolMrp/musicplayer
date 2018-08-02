@@ -1,55 +1,51 @@
-/**
- * @authors Your Name (you@example.org)
- * @date    2018-02-10 11:03:01
- * @version $Id$
- */
- window.onload = function(){
- 	var musicMenu = getClass("song_sheet")[0];//歌单
-	var oMenu = getClass("menu")[0]; //歌单列表
-	// var aMenu_sname = oMenu.getElementsByTagName("span"); //歌单歌名
-	// var aMenu_remove = oMenu.getElementsByTagName("i"); //歌单删除键
-	var oSearch = getClass("search_iput")[0]; //搜索框
-	var aSearch_list = getClass("search_list")[0];//搜索显示歌曲列表
-	var oHistory_btn = getClass("his_btn")[0];//历史纪录按钮
-	var oHis_menu = getClass("his_menu")[0];//历史纪录歌单
-	var oSname = getClass("title")[0];//正在播放的歌名
-	var oSinger = getClass("singer")[0];//正在播放歌曲演唱者
-	var oPic = getClass("pic")[0]; //转到图片
-	var oAlbum = getClass("album")[0];//专辑
-	var oLyc_list = getClass("lyc_list")[0];//歌词列表
-	var oCanv = document.querySelector("canvas");//canvas音频图
-	var oCurTime = getClass("curTime")[0];//歌曲当前时间
-	var oProgress_bar = getClass("progress_bar")[0];//总进度条
-	var oProgress = getClass("progress")[0];//当前进度
-	var oAllTime = getClass("allTime")[0];//歌曲总时间
-	var oPattern = getClass("pattern")[0];//播放模式
-	var oLoad = getClass("load")[0];//加载动画
-	var oPrev = getClass("prev")[0];//前一首
-	var oPlay = getClass("play")[0];//播放
-	var oNext = getClass("next")[0];//下一首
-	var oVolume = getClass("volume")[0];//音量
-	var vRange = getClass("range")[0];
-	var oAudio = getClass("audio")[0];//播放器
-	var value = "说散就散";//搜索框值
-	var inSearch = false;//搜索框开关
-	var menu_onOff = true;//歌单开关
-	var his_onOff = true;//历史记录开关
-	var play_onOff = true;//播放开关
-	var vom_onOff = true;
-	var aMenu_sname;//歌单歌名
-	var aMenu_remove;//歌单删除键
-	var id = 0;//歌曲id
-	var n = 0;//播放顺序变量
-	var m = 0;//歌词上移变量
-	var rotTimer;//专辑转动定时器
+window.onload = function(){
+ 	var musicMenu = getClass("song_sheet")[0],//歌单
+		oMenu = getClass("menu")[0], //歌单列表
+		//aMenu_sname = oMenu.getElementsByTagName("span"), //歌单歌名
+		// var aMenu_remove = oMenu.getElementsByTagName("i"), //歌单删除键
+		oSearch = getClass("search_iput")[0], //搜索框
+		aSearch_list = getClass("search_list")[0],//搜索显示歌曲列表
+		oHistory_btn = getClass("his_btn")[0],//历史纪录按钮
+		oHis_menu = getClass("his_menu")[0],//历史纪录歌单
+		oSname = getClass("title")[0],//正在播放的歌名
+		oSinger = getClass("singer")[0],//正在播放歌曲演唱者
+		oPic = getClass("pic")[0], //旋转图片
+		oAlbum = getClass("albumImg")[0],//专辑
+		oLyc_list = getClass("lyc_list")[0],//歌词列表
+		oCanv = document.querySelector("canvas"),//canvas音频图
+		oCurTime = getClass("curTime")[0],//歌曲当前时间
+		oProgress_bar = getClass("progress_bar")[0],//总进度条
+		oProgress = getClass("progress")[0],//当前进度
+		oAllTime = getClass("allTime")[0],//歌曲总时间
+		oPattern = getClass("pattern")[0],//播放模式
+		oLoad = getClass("load")[0],//加载动画
+		oPrev = getClass("prev")[0],//前一首
+		oPlay = getClass("play")[0],//播放
+		oNext = getClass("next")[0],//下一首
+		oVolume = getClass("volume")[0],//音量
+		vRange = getClass("range")[0],
+		oAudio = getClass("audio")[0],//播放器
+		value = "说散就散",//搜索框值
+		inSearch = false,//搜索框开关
+		menu_onOff = true,//歌单开关
+		his_onOff = true,//历史记录开关
+		play_onOff = true,//播放开关
+		vom_onOff = true,
+		aMenu_sname,//歌单歌名
+		aMenu_remove,//歌单删除键
+		id = 0,//歌曲id
+		n = 0,//播放顺序变量
+		m = 0,//歌词上移变量
+		rotTimer;//专辑转动定时器
 	//禁止选中
 	document.onselectstart = function(){
 		return false;
-	}
+	};
 	//禁止拖拽
 	document.ondrag = function(){
 		return false;
-	}
+	};
+	oLoad.style.display = "none";//加载动画
 	//requestAnimationFrame兼容
 	window.requestAnimationFrame = window.requestAnimationFrame || function (fn){
 		return setTimeout(fn,1000/60);
@@ -81,11 +77,10 @@
 	//得到当前默认播放歌词
 	getLyric();
 	function getMusic(){
+		oAudio.src = lrc[n].src;
 		oSname.innerHTML = lrc[n].songName;
 		oSinger.innerHTML = lrc[n].singer;
-		oAlbum.style.background = 'url("'+lrc[n].album+'") no-repeat center center';
-		oAlbum.style.backgroundSize = "130px 130px";
-		oAudio.src = lrc[n].src;
+		oAlbum.src = lrc[n].album;
 	}
 	//点击播放歌曲
 	oPlay.onclick = function(){
@@ -131,7 +126,6 @@
 			playMusic();//播放歌曲
 		}
 	}
-
 	//扬声器按钮
 	oVolume.onclick = function(e){
 		e.stopPropagation();
@@ -214,7 +208,7 @@
 						var len = oMenu.getElementsByTagName("p").length;
 						n = Math.floor(Math.random()*len);
 						loop_switch();
-					}else{//歌单中有歌曲 单曲循环
+					}else{//歌单中无歌曲 单曲循环
 						m = 0;
 						loop_switch();
 					}
@@ -249,7 +243,7 @@
 			rotate();
 			oPlay.style.background = 'url("images/pause.png") no-repeat center center';
 			play_onOff = false;
-			//creatAudioMap();//创建音频图
+			creatAudioMap();//创建音频图
 		}else{
 			oAudio.pause();
 			cancelAnimationFrame(rotTimer);//清除动画
@@ -315,7 +309,7 @@
 	//历史纪录列表
 	oHistory_btn.onclick = function(e){
 		e.stopPropagation();
-		oMenu.style.display = "none";
+		oMenu.style.display = "none";//歌单消失
 		aSearch_list.style.display = "none";//搜索列表消失
 		vRange.style.display = "none";//音量条
 		menu_onOff = true;
@@ -370,6 +364,7 @@
 			if(oSearch.value){
 				inSearch = true;
 				value = oSearch.value;
+				oLoad.style.display = "block";
 				createMusic();
 			}
 		}
@@ -397,7 +392,7 @@
 						//id = m_Data[this.index].songid;
 						//oAudio.src = m_Data[this.index].m4a;
 						//playMusic();
-						alert("很抱歉,由于版权限制,所有歌曲都不能播放!");
+						alert("很抱歉,由于版权限制,歌曲暂时不能播放!");
 						aSearch_list.style.display = "none";
 						oSearch.value = '';
 					}
@@ -444,7 +439,7 @@
 		},false);
 	}
 	//创建音频图
-	creatAudioMap();//创建音频图
+	//creatAudioMap();//创建音频图
 	function creatAudioMap(){
 	    	var oCanv = document.querySelector("canvas");
 	    	var oAudio = getClass("audio")[0];
@@ -477,7 +472,6 @@
 	    		analyser.getByteFrequencyData(arr);
 	    		//间隔
 	    		var step = Math.round(arr.length/count);
-	    		//console.log(arr);
 	    		cxt.beginPath();
 	    		for(var i=0;i<count;i++){
 	    			var hight = Math.floor(arr[step*i]/2);
@@ -504,19 +498,6 @@
 	function toTwo(time){
 		return time>=10?time:"0"+time;
 	}
-
-	//load加载
-	//function load(){
-		// oAudio.addEventListener("canplay",function(){
-		// 	setTimeout(function(){
-		// 		oAudio.play();
-		// 		play_onOff = true;
-		// 		rotate();
-		// 		oLoad.style.display = "none";
-		// 	},100);
-		// },false);
-	//}
-
 	//请求歌曲
 	function createMusic(){
 		$.ajax({
@@ -534,12 +515,12 @@
 		        alert("操作失败!");
 		    },
 		    success: function(result) {
+		    	oLoad.style.display = "none";
 		        //createMusic(result) //console变量在ie低版本下不能用
 		        getmusic(result);
 		    }
 		});
 	}
-
 	//请求歌词
 	// function createLyric(){
 	// 	$.ajax({
@@ -551,9 +532,7 @@
 	// 	        "showapi_appid": 54364, //这里需要改成自己的appid
 	// 	        "showapi_sign": 'dda7ef0e36fc434b9822f09ca283a393',  //这里需要改成自己的应用的密钥secret
 	// 	        "musicid":"4833285"
-
 	// 	    },
-
 	// 	    error: function(XmlHttpRequest, textStatus, errorThrown) {
 	// 	        alert("操作失败!");
 	// 	    },
@@ -564,7 +543,6 @@
 	// 	    }
 	// 	});
 	// }
-
 	//获取当前时间
 	function formatterDateTime() {
 		var date=new Date()

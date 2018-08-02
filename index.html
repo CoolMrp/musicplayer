@@ -6,25 +6,25 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <link rel="shortcut icon" type="images/x-icon" href="images/title.ico">
 <script>
-	//自适应屏幕宽
-	changeFixW();
-	window.addEventListener('resize',function(){
-		changeFixW();
-	},false);
-	function changeFixW(){
-		var meta = document.createElement("meta");
-		var w = window.screen.width;
-		//var h = window.screen.height;
-		var scale_w = w/375;
-		var metaAttr = {
-			'name':'viewport',
-			'content':'initial-scale='+scale_w+',maximum-scale='+scale_w+',minimum-scale='+scale_w+',user-scalable=no,width=375'
-		};
-		for(var key in metaAttr){
-			meta[key] = metaAttr[key];
-		}
-		document.getElementsByTagName("head")[0].appendChild(meta);
-	}
+    //自适应屏幕宽
+    changeFixW();
+    window.addEventListener('resize',function(){
+        changeFixW();
+    },false);
+    function changeFixW(){
+        var meta = document.createElement("meta");
+        var w = window.screen.width;
+        //var h = window.screen.height;
+        var scale_w = w/375;
+        var metaAttr = {
+            'name':'viewport',
+            'content':'initial-scale='+scale_w+',maximum-scale='+scale_w+',minimum-scale='+scale_w+',user-scalable=no,width=375'
+        };
+        for(var key in metaAttr){
+            meta[key] = metaAttr[key];
+        }
+        document.getElementsByTagName("head")[0].appendChild(meta);
+    }
 </script>
 <title>music</title>
 <meta name="description" content="">
@@ -33,91 +33,66 @@
 </head>
 <body>
     <div id="main">
-    	<div class="top">
-    		<div class="musicMenu">
-    			<span class="song_sheet">歌单</span>
-    			<div class="menu">
-    				<!-- <p class="m_li1"><span>说散就散</span><i>删除</i></p>
-	    			<p class="m_li2"><span>舍得</span><i>删除</i></p>
-	    			<p class="m_li3"><span>重来</span><i>删除</i></p>
-	    			<p class="m_li4"><span>美人鱼</span><i>删除</i></p>
-	    			<p class="m_li6"><span>童话镇</span><i>删除</i></p>
-	    			<p class="m_li7"><span>半壶纱</span><i>删除</i></p>
-	    			<p class="m_li8"><span>凉凉</span><i>删除</i></p>
-	    			<p class="m_li9"><span>泡沫</span><i>删除</i></p>
-	    			<p class="m_li9"><span>喜欢你</span><i>删除</i></p>
-	    			<p class="m_li9"><span>龙卷风</span><i>删除</i></p>
-	    			<p class="m_li9"><span>我们不一样</span><i>删除</i></p>
-	    			<p class="m_li9"><span>夜色</span><i>删除</i></p>
-	    			<p class="m_li9"><span>海阔天空</span><i>删除</i></p>
-	    			<p class="m_li10"><span>带你去旅行</span><i>删除</i></p>
-	    			<p class="m_li10"><span>远走高飞</span><i>删除</i></p> -->
-    			</div>
-    		</div>
-    		<div class="search">
+        <div class="top">
+            <div class="musicMenu">
+                <span class="song_sheet">歌单</span>
+                <div class="menu"></div>
+            </div>
+            <div class="search">
                 <form action="javascript:void(0)">
-    			    <input class="search_iput" type="search" placeholder="搜索歌曲"/>
+                    <input class="search_iput" type="search" placeholder="搜索歌曲"/>
                 </form>
-    			<ul class="search_list">
-    				<!-- <li><span>说散就散</span><i>袁娅维</i></li>
-    				<li><span>说散就散</span><i>袁娅维</i></li>
-    				<li><span>说散就散</span><i>袁娅维</i></li> -->
-    			</ul>
-    		</div>
-    		<div class="hostory">
-    			<span class="his_btn">历史</span>
-    			<div class="his_menu">
-    				<!-- <p class="m_li1"><span>说散就散</span><i>删除</i><i>添加</i></p>
-	    			<p class="m_li2"><span>喜欢你</span><i>删除</i><i>添加</i></p>
-	    			<p class="m_li10"><span>远走高飞</span><i>删除</i><i>添加</i></p> -->
-    			</div>
-    		</div>
-    	</div>
-    	<div class="content">
-    		<div class="load">
-    			<img src="images/loading.gif" alt="加载中">
-    		</div>
-    		<div class="tit">
-    			<p class="title"></p>
-    			<p class="singer"></p>
-    		</div>
-    		<div class="pic">
-    			<div class="album"></div>
-    			<audio class="audio" src=""></audio>
-    		</div>
-    		<div class="lyric">
-    			<div class="lyc_list">
-    				<!-- <p>年开始的v陌生地方v不</p>
-		    		<p>上的分布函数的繁琐的</p>
-		    		<p>阿尔还是人家看到图看</p> -->
-    			</div>
+                <ul class="search_list"></ul>
+            </div>
+            <div class="hostory">
+                <span class="his_btn">历史</span>
+                <div class="his_menu"></div>
+            </div>
+        </div>
+        <div class="content">
+            <div class="load">
+                <img src="images/loading.gif" alt="加载中">
+            </div>
+            <div class="tit">
+                <p class="title"></p>
+                <p class="singer"></p>
+            </div>
+            <div class="pic">
+                <img class="cirimg" src="./images/beirBg.png" alt="">
+                <div class="album">
+                    <img class="albumImg" src="./images/ssjs.jpg" alt="">         
+                </div>
+                <audio class="audio" src=""></audio>
+            </div>
+            <div class="lyric">
+                <div class="lyc_list"></div>
                 <div class="audioMap">
                     <canvas id="myCanvas"></canvas>
                 </div>
-    		</div>
-    	</div>
-    	<div class="foot">
-    		<div class="time">
-    			<div class="curTime">00.00</div>
-    			<div class="progress_bar">
-    				<span class="progress"></span>
-    			</div>
-    			<div class="allTime">04.02</div>
-    		</div>
-    		<div class="control">
-    			<div class="pattern"></div>
-    			<div class="prev"></div>
-    			<div class="play"></div>
-    			<div class="next"></div>
-    			<div class="volume">
-    				<input class="range" type="range" min="0" max="10">
-    			</div>
-    		</div>
-    	</div>
+            </div>
+        </div>
+        <div class="foot">
+            <div class="time">
+                <div class="curTime">00.00</div>
+                <div class="progress_bar">
+                    <span class="progress"></span>
+                </div>
+                <div class="allTime">04.02</div>
+            </div>
+            <div class="control">
+                <div class="pattern"></div>
+                <div class="prev"></div>
+                <div class="play"></div>
+                <div class="next"></div>
+                <div class="volume">
+                    <input class="range" type="range" min="0" max="10">
+                </div>
+            </div>
+        </div>
     </div>
-	
+    
     <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script><!-- 引入jq -->
-	<script src="js/lyric.js"></script><!-- 歌词js -->
-	<script src="js/music.js"></script><!-- 操作js -->
+    <script src="js/lyric.js"></script><!-- 歌词js -->
+    <script src="js/music.js"></script><!-- 操作js -->
 </body>
 </html>
