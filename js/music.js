@@ -249,7 +249,7 @@
 			rotate();
 			oPlay.style.background = 'url("images/pause.png") no-repeat center center';
 			play_onOff = false;
-			// creatAudioMap();//创建音频图
+			creatAudioMap();//创建音频图
 		}else{
 			oAudio.pause();
 			cancelAnimationFrame(rotTimer);//清除动画
@@ -444,7 +444,7 @@
 		},false);
 	}
 	//创建音频图
-	creatAudioMap();//创建音频图
+	//creatAudioMap();//创建音频图
 	function creatAudioMap(){
 	    	var oCanv = document.querySelector("canvas");
 	    	var oAudio = getClass("audio")[0];
